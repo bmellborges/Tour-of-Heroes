@@ -1,29 +1,22 @@
-<h3>{{ hero.name | uppercase }} details</h3>
 <h2>My heroes</h2>
-    <ul class="heroes" >
-        <li [class.selected]="hero === selectedHero" *ngFor="let hero of heroes" (click)="onSelect(hero)">
-            <span class="badge" >{{ hero.id }}</span> {{ hero.name }}
-        </li>
-    </ul>
-    <article *ngIf="selectedHero">
-        <h2>{{ selectedHero.name | uppercase }} Details</h2>
-        <section><span>id: </span>{{ selectedHero.id }}</section>
-        <section>
-            <label for="hero-name">Hero name: </label>
-            <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-        </section>
-    </article>
-    <!--<div *ngIf="selectedHero">
-
-        <h2>{{selectedHero.name | uppercase}} Details</h2>
-        <div><span>id: </span>{{selectedHero.id}}</div>
-        <div>
-          <label for="hero-name">Hero name: </label>
-          <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-        </div>
-      
-      </div>-->
+<ul class="heroes" >
+    <li [class.selected]="hero === selectedHero" *ngFor="let hero of heroes" (click)="onSelect(hero)">
+        <span class="badge" >{{ hero.id }}</span> {{ hero.name }}
+    </li>
+</ul>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<!--<div *ngIf="selectedHero">
+    
+    <h2>{{selectedHero.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{selectedHero.id}}</div>
+    <div>
+        <label for="hero-name">Hero name: </label>
+        <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+    </div>
+    
+</div>-->
 <article>
+    <h3>{{ hero.name | uppercase }} details</h3>
     <section><span>ID: </span>{{ hero.id }}</section>
     <section><span>NAME: </span>{{ hero.name}}</section>
 </article>
@@ -32,7 +25,7 @@
         <fieldset>
             <section class="form-group">
               <label for="name">Hero Name: </label>
-              <input  id="name" [(ngModel)]="hero.name" placeholder="Name" rows="3">
+              <input  id="name" [(ngModel)]="hero.name" placeholder="Name" rows="4">
             </section>
         </fieldset>
     </section>
