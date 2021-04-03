@@ -11,7 +11,7 @@ import { HeroService } from '../hero.service';
   styleUrls: [ './hero-detail.component.css' ]
 })
 export class HeroDetailComponent implements OnInit {
-  hero!: Hero; //diz ao compilador para não procurar um inicializador para esta propriedade
+  hero!: Hero;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,14 +22,19 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getHero();
   }
+
   getHero(): void {
-    let id = +this.route.snapshot.paramMap.get('id')!; //o + substitui o parseInt e o ! evita que valores null sejam retornados.
+    const id = +this.route.snapshot.paramMap.get('id')!;
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
   }
-  
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.heroService.updateHero(this.hero)
+      .subscribe(() => this.goBack());
   }
 }
